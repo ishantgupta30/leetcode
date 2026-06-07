@@ -1,11 +1,17 @@
 class Solution:
     def isPalindrome(self, x: int) -> bool:
-        if x < 0 or (x % 10 == 0 and x != 0):
+        if x < 0:            # negative numbers are never palindrome
             return False
         
-        reversed_half = 0
-        while x > reversed_half:
-            reversed_half = reversed_half * 10 + x % 10
-            x //= 10
+        original = x         # ✅ save original before loop destroys x
+        revnumber = 0
+        while x:
+            last_digit = x % 10
+            x = x // 10
+            revnumber = revnumber * 10 + last_digit
         
-        return x == reversed_half or x == reversed_half // 10
+        return revnumber == original  # ✅ compare with original
+
+# Synced seamlessly with LeetHub Pro
+# Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
+# Get it here: https://chromewebstore.google.com/detail/bcilpkkbokcopmabingnndookdogmbna
